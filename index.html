@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Blackjack Royale | Participant Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pregame.css">
+</head>
+<body>
+    <div class="pre-game-wrapper">
+        <div class="pre-game-card">
+            <!-- Big Game Title -->
+            <div class="game-title-header">
+                <h1>BLACKJACK</h1>
+                <h2>ROYALE</h2>
+            </div>
+
+            <div class="form-container">
+                <!-- Instructions -->
+                <div class="info-message">
+                    📝 <strong>Please complete the form below to begin.</strong><br>
+                    Your responses will be sent directly to the researcher.
+                </div>
+
+                <!-- CUSTOM FORM -->
+                <div class="custom-form-container">
+                    <form id="participantForm" class="participant-form">
+                        <div class="form-group">
+                            <label for="participantId">Participant ID:</label>
+                            <input type="text" id="participantId" name="participantId" class="form-input" placeholder="Enter your ID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <div class="radio-group-custom">
+                                <label class="radio-custom">
+                                    <input type="radio" name="gender" value="Male"> Male
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="gender" value="Female"> Female
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="gender" value="Non-binary"> Non-binary
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="gender" value="Prefer not to say"> Prefer not to say
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Age Range:</label>
+                            <div class="radio-group-custom">
+                                <label class="radio-custom">
+                                    <input type="radio" name="age" value="18-25"> 18-25
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="age" value="26-35"> 26-35
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="age" value="36-45"> 36-45
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="age" value="46-55"> 46-55
+                                </label>
+                                <label class="radio-custom">
+                                    <input type="radio" name="age" value="56+"> 56+
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-custom">
+                                <input type="checkbox" id="consent" required>
+                                <span>✓ I confirm I have signed the consent form</span>
+                            </label>
+                        </div>
+
+                        <div class="form-status" id="formStatus" style="display: none;"></div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="submit-form-btn">✓ SUBMIT & CONTINUE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="action-buttons-pregame">
+                    <button id="startGameBtnPre" class="start-game-btn" disabled>🎮 START GAME</button>
+                    <button id="howToPlayBtn" class="how-to-play-btn">📖 HOW TO PLAY</button>
+                </div>
+
+                <div class="form-note">
+                    ⚡ <strong>Note:</strong> Please submit the form above before starting the game.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How To Play Modal -->
+    <div id="howToPlayModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📜 HOW TO PLAY BLACKJACK ROYALE</h2>
+                <button id="closeModalBtn" class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>🎯 Goal:</strong> Beat the dealer's hand without exceeding 21.</p>
+                <p><strong>🃏 Card Values:</strong> Number cards = face value. Face cards (J, Q, K) = 10. Ace = 11 or 1.</p>
+                <p><strong>⚙️ Gameplay Rules:</strong></p>
+                <ul>
+                    <li>Place bet (min 25 points) → Click "PLACE BET" then "NEW HAND".</li>
+                    <li><strong>HIT</strong> → Take another card. <strong>STAND</strong> → End your turn.</li>
+                    <li><strong>DOUBLE</strong> → Double bet, receive exactly one more card.</li>
+                    <li><strong>SPLIT</strong> → If first two cards have same rank, split into two hands.</li>
+                    <li><strong>Insurance/Even Money</strong> offered when dealer shows Ace.</li>
+                    <li>Blackjack pays 3:2. Dealer stands on soft 17.</li>
+                    <li>Complete 50 hands maximum.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModalOnlyBtn" class="start-game-modal-btn">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pregame.js"></script>
+</body>
+</html>

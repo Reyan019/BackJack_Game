@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Blackjack Royale | 50 Hands Challenge ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Get participant ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const participantId = urlParams.get('participantId');
+        if (participantId) {
+            sessionStorage.setItem('participantId', participantId);
+        }
+    </script>
+    <div class="main-layout">
+        <!-- Game Area -->
+        <div class="game-container">
+            <div class="info-panel">
+                <div class="bankroll">
+                    <span>⭐</span>
+                    <span id="bankValue">1000</span>
+                    <span style="font-size: 0.9rem; margin-left: 5px;">Points</span>
+                </div>
+                <div class="bet-area">
+                    <div class="bet-label">🎲 BET</div>
+                    <div class="current-bet" id="currentBetSpan">0</div>
+                    <button class="bet-control" id="betPlusBtn">➕ +25</button>
+                    <button class="bet-control" id="betMinusBtn">➖ -25</button>
+                    <button class="bet-control reset-btn" id="placeBetBtn">💸 PLACE BET</button>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>🎯 HANDS PROGRESS</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="handsPlayedProgress">0</span> / <span id="totalHandsProgress">50</span> hands completed
+                </div>
+            </div>
+
+            <!-- DEALER AREA -->
+            <div class="hand-section">
+                <div class="hand-title">
+                    <span>🎰 DEALER</span>
+                    <span class="score-badge" id="dealerScoreDisplay">?</span>
+                </div>
+                <div class="cards-row" id="dealerCardsContainer"></div>
+            </div>
+
+            <!-- PLAYER AREA -->
+            <div class="hand-section" id="playerMainArea">
+                <div class="hand-title">
+                    <span>👤 PLAYER</span>
+                    <span class="score-badge" id="playerScoreDisplay">0</span>
+                </div>
+                <div class="cards-row" id="playerCardsContainer"></div>
+            </div>
+
+            <!-- Split Hands Container -->
+            <div id="splitHandsContainer" style="display: none;">
+                <div class="hand-section split-hand" id="splitHand1Section">
+                    <div class="hand-title">
+                        <span>✂️ SPLIT HAND 1</span>
+                        <span class="score-badge" id="splitHand1Score">0</span>
+                    </div>
+                    <div class="cards-row" id="splitHand1Cards"></div>
+                    <div class="split-hand-buttons">
+                        <button class="split-hit-btn" data-hand="1">🃟 HIT</button>
+                        <button class="split-stand-btn" data-hand="1">✋ STAND</button>
+                        <button class="split-double-btn" data-hand="1">⚡ DOUBLE</button>
+                    </div>
+                </div>
+                <div class="hand-section split-hand" id="splitHand2Section">
+                    <div class="hand-title">
+                        <span>✂️ SPLIT HAND 2</span>
+                        <span class="score-badge" id="splitHand2Score">0</span>
+                    </div>
+                    <div class="cards-row" id="splitHand2Cards"></div>
+                    <div class="split-hand-buttons">
+                        <button class="split-hit-btn" data-hand="2">🃟 HIT</button>
+                        <button class="split-stand-btn" data-hand="2">✋ STAND</button>
+                        <button class="split-double-btn" data-hand="2">⚡ DOUBLE</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insurance & Even Money Panel -->
+            <div class="insurance-panel" id="insurancePanel" style="display: none;">
+                <div class="insurance-message" id="insuranceMessage"></div>
+                <div class="insurance-buttons">
+                    <button id="insuranceYesBtn" class="insurance-btn yes-btn">🛡️ TAKE INSURANCE</button>
+                    <button id="insuranceNoBtn" class="insurance-btn no-btn">❌ DECLINE</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="hitBtn" disabled>🃟 HIT</button>
+                <button id="standBtn" disabled>✋ STAND</button>
+                <button id="doubleBtn" disabled>⚡ DOUBLE</button>
+                <button id="splitBtn" disabled>✂️ SPLIT</button>
+                <button id="newGameBtn" class="btn-primary">🔄 NEW HAND</button>
+                <button id="resetGameBtn" class="reset-btn" style="display: none;">🔄 RESET GAME</button>
+            </div>
+            <footer>♠️ Blackjack pays 3:2 | Dealer stands on soft 17 | Double down any first two cards | Split any pair (including 10-value cards) | Split Aces get 1 card each | Insurance (2:1) when dealer shows Ace | Even Money when player has Blackjack vs Dealer Ace | 50 Hands Maximum | Starting Points: 1000 | Min Bet: 25</footer>
+        </div>
+
+        <!-- Chat Log Sidebar -->
+        <div class="chat-log">
+            <div class="chat-header">
+                <span>📋 GAME HISTORY</span>
+                <button id="clearChatBtn" class="clear-chat-btn">🗑️ CLEAR</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-entry welcome">🎰 Welcome to Blackjack Royale!</div>
+                <div class="chat-entry system">Starting points: 1000 | 50 hands maximum</div>
+                <div class="chat-entry system">Place your bet to begin! (Min: 25 points)</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
